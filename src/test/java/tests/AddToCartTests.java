@@ -14,4 +14,14 @@ public class AddToCartTests extends BaseTests {
         ViewCartPage viewCartPage = allProductsPage.addProductsToCart();
         Assert.assertEquals(viewCartPage.getQuantityOfAddedProduct(), "1", "The quantity should be 1");
     }
+
+    @Test
+    public void testQuantityOfProductAdded() {
+
+        NavigationBarPage navigationBarPage = new NavigationBarPage(driver);
+        AllProductsPage allProductsPage = navigationBarPage.clickOnProductsBtn();
+        ViewCartPage viewCartPage = allProductsPage.addProductsMultipleTimesToCart(4);
+        Assert.assertEquals(viewCartPage.getQuantityOfAddedProduct(),"4","The quantity should be 4");
+    }
 }
+

@@ -6,22 +6,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-
-//import static fileReaderManager.ReadFromFiles.getPropertyByKey;
+import static fileReaderManager.ReadFromFiles.getPropertyByKey;
 
 
 public class BaseTests {
 
     WebDriver driver;
+    public static String configPropertyFileName = "configurationData.properties";
 
     @BeforeMethod
     public void setupWebpage() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://www.automationexercise.com/");
+        driver.get(getPropertyByKey(configPropertyFileName, "APP_URL"));
         driver.manage().window().maximize();
     }
-
 
     @AfterMethod
     public void closeWebBrowser() {

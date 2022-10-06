@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 public class AllProductsPage extends BasePage {
@@ -18,6 +17,8 @@ public class AllProductsPage extends BasePage {
     private By searchedProductsTitles = By.cssSelector(".productinfo p");
     private By addProductToCart = By.xpath("(//a[contains(@class,\"add-to-cart\")])[3]");
     private By viewCartBtn = By.cssSelector(".text-center a[href=\"/view_cart\"]");
+    private By continueShoppingBtn = By.cssSelector("#cartModal button.btn-success");
+    private By addProductMultipleTimes = By.xpath("(//a[contains(@class,\"add-to-cart\")])[1]");
 
 
     //Operations
@@ -39,12 +40,39 @@ public class AllProductsPage extends BasePage {
         }
     }
 
+    public boolean checkOnAllSearchResults(String searchedKeyWord) {
+
+        List<WebElement> productsTitles = locateElements(searchedProductsTitles);
+
+        for (int i = 0; i < productsTitles.size(); i++) {
+            String searchedProductName = productsTitles.get(i).getText();
+
+            if (searchedProductName.toLowerCase().contains(searchedKeyWord.toLowerCase()) == false) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public ViewCartPage addProductsToCart() {
-        scrollVertically(500);
+        scrollVertically(600);
         clickOnElement(addProductToCart);
         modalActionsToClick(viewCartBtn);
         return new ViewCartPage(driver);
     }
+
+    public ViewCartPage addProductsMultipleTimesToCart(int addToCartNumber) {
+        scrollVertically(600);
+        for (int i = 1; i < addToCartNumber; i++) {
+            clickOnElement(addProductMultipleTimes);
+            modalActionsToClick(continueShoppingBtn);
+        }
+        clickOnElement(addProductMultipleTimes);
+        modalActionsToClick(viewCartBtn);
+        return new ViewCartPage(driver);
+    }
+
 }
 
 

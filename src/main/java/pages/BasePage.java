@@ -1,18 +1,16 @@
 package pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
 
-    WebDriver driver ;
+    WebDriver driver;
     WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
@@ -20,11 +18,13 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public WebElement locateElement (By elementLocator){
+    public WebElement locateElement(By elementLocator) {
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
         return driver.findElement(elementLocator);
 
     }
+
     public List<WebElement> locateElements(By elementLocator) {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
@@ -44,7 +44,6 @@ public class BasePage {
     public String getTextOfWebElement(By elementLocator) {
 
         return locateElement(elementLocator).getText();
-
     }
 
     public void scrollVertically(int deltaY) {
@@ -56,12 +55,8 @@ public class BasePage {
 
         driver.switchTo().activeElement();
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
-        locateElement(elementLocator).click();
+        clickOnElement(elementLocator);
         driver.switchTo().defaultContent();
     }
-
-
-
-
 
 }

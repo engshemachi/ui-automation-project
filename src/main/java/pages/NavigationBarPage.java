@@ -9,9 +9,11 @@ public class NavigationBarPage extends BasePage {
         super(driver);
     }
 
+    //Locators
     private By productsBtn = By.cssSelector("header a[href=\"/products\"]");
     private By cartBtn = By.cssSelector("header a[href=\"/view_cart\"]");
 
+    //Operations
     public AllProductsPage clickOnProductsBtn (){
 
         clickOnElement(productsBtn);

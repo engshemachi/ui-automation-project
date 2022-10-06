@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 public class ViewCartPage extends BasePage {
 
-    private By quantityOfAddedProduct = By.cssSelector(".cart_quantity button.disabled");
-
     public ViewCartPage(WebDriver driver) {
         super(driver);
     }
+
+    private By quantityOfAddedProduct = By.cssSelector(".cart_quantity button.disabled");
 
     public String getQuantityOfAddedProduct() {
         return getTextOfWebElement(quantityOfAddedProduct);
