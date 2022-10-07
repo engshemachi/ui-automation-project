@@ -23,5 +23,13 @@ public class AddToCartTests extends BaseTests {
         ViewCartPage viewCartPage = allProductsPage.addProductsMultipleTimesToCart(4);
         Assert.assertEquals(viewCartPage.getQuantityOfAddedProduct(),"4","The quantity should be 4");
     }
+
+    @Test
+    public void testNumberOfColumnsInCart () {
+        NavigationBarPage navigationBarPage = new NavigationBarPage(driver);
+        AllProductsPage allProductsPage = navigationBarPage.clickOnProductsBtn();
+        ViewCartPage viewCartPage = allProductsPage.addProductsToCart();
+        Assert.assertEquals(viewCartPage.getNumberOfColumnsInCart(),6,"Number of columns should be 6");
+    }
 }
 

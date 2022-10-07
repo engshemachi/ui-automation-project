@@ -1,5 +1,6 @@
 package pages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -39,6 +40,10 @@ public class BasePage {
 
     public void typeTextInField(By elementLocator, String text) {
         locateElement(elementLocator).sendKeys(text);
+    }
+
+    public void pressEnterFromKeyboard (By elementLocator) {
+        locateElement(elementLocator).sendKeys(Keys.ENTER);
     }
 
     public String getTextOfWebElement(By elementLocator) {

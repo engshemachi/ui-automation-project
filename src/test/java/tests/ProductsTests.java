@@ -23,4 +23,11 @@ public void testAllSearchResults () {
         Assert.assertTrue(allProductsPage.checkOnAllSearchResults("White"), "Searched Products doesn't match the search keyword");
 
     }
+
+    @Test
+    public void testEnterFromKeyboard () {
+        NavigationBarPage navigationBarPage = new NavigationBarPage(driver);
+        AllProductsPage allProductsPage = navigationBarPage.clickOnProductsBtn();
+        Assert.assertEquals(allProductsPage.clickOnEnterFromKeyboardToViewSearch("White"),"SEARCHED PRODUCTS");
+    }
 }

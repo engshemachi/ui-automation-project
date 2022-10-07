@@ -20,6 +20,7 @@ public class AllProductsPage extends BasePage {
     private By continueShoppingBtn = By.cssSelector("#cartModal button.btn-success");
     private By addProductMultipleTimes = By.xpath("(//a[contains(@class,\"add-to-cart\")])[1]");
 
+    private By searchedProductsWord = By.cssSelector("h2[class=\"title text-center\"]");
 
     //Operations
     public void typeSearchKeyword(String searchedKeyWord) {
@@ -71,6 +72,14 @@ public class AllProductsPage extends BasePage {
         clickOnElement(addProductMultipleTimes);
         modalActionsToClick(viewCartBtn);
         return new ViewCartPage(driver);
+    }
+
+    public String clickOnEnterFromKeyboardToViewSearch (String searchedKeyWord){
+
+        typeTextInField(searchField, searchedKeyWord);
+        //clickOnElement(submitSearchBtn);
+        pressEnterFromKeyboard(searchField);
+        return getTextOfWebElement(searchedProductsWord);
     }
 
 }
